@@ -1,9 +1,9 @@
-package com.natasha.taskmanagementapp;
+package controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class PrimaryController {
+public class SignupController {
 
     @FXML
     private void switchToSecondary() throws IOException {

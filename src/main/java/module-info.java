@@ -3,6 +3,6 @@ module com.natasha.taskmanagementapp {
     requires javafx.fxml;
     requires java.base;
 
-    opens com.natasha.taskmanagementapp to javafx.fxml;
-    exports com.natasha.taskmanagementapp;
+    opens controllers to javafx.fxml;
+    exports controllers;
 }
