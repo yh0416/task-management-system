@@ -1,5 +1,0 @@
-module-info.class
-com/group1/taskmanagement/models/TaskModel.class
-com/group1/taskmanagement/controllers/App.class
-com/group1/taskmanagement/controllers/LoginController.class
-com/group1/taskmanagement/controllers/TaskController.class
