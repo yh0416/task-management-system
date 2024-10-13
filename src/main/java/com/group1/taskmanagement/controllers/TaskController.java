@@ -10,13 +10,18 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class TaskController {
 
@@ -74,6 +79,43 @@ public class TaskController {
         taskDueClm.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         taskPriorityClm.setCellValueFactory(new PropertyValueFactory<>("priority"));
         taskStatusClm.setCellValueFactory(new PropertyValueFactory<>("status"));
+         taskStatusClm.setCellFactory(column-> new TableCell<Task,String>(){
+            private Label label =new Label();
+            private Circle circle = new Circle(10);
+            {
+                label.setGraphic(circle);
+                label.setContentDisplay(ContentDisplay.LEFT);
+            }   
+          @Override
+          protected void updateItem(String item, boolean empty) {
+              super.updateItem(item, empty);
+              if (empty) {
+                  setGraphic(null);
+                  setText(null);
+              } else {
+                  label.setText(item);
+                  Color color;
+                  switch (item) {
+                      case "Pending":
+                         color =Color.DARKORANGE;   
+                          break;
+                      case "In Progress":
+                          color=Color.BLUE;
+                          break;
+                      case "Completed":
+                          color = Color.GREEN;
+                          break;
+                      default:
+                          color = Color.GRAY;
+                  }
+                  circle.setFill(color);
+                  label.setTextFill(color);
+                  setGraphic(label);
+              }
+          }
+          
+        });
+
         
 //        filter
         //create a new filtered list and allow all task data to pass through the filter
@@ -172,25 +214,25 @@ public class TaskController {
     }
     
     
-//    sort data in ascending order
+//    sort data in ascending order by priority
     @FXML
     private void sortAscending(){
         //clear any existing sort order
       tasksTable.getSortOrder().clear();
       //add task name column to the sort order
-      tasksTable.getSortOrder().add(taskNameClm);
+      tasksTable.getSortOrder().add(taskPriorityClm);
       //sort the task name in ascending order
-      taskNameClm.setSortType(TableColumn.SortType.ASCENDING);
+      taskPriorityClm.setSortType(TableColumn.SortType.ASCENDING);
       //sort
       tasksTable.sort();
     }
     
-//   sort data in descending order 
+//   sort data in descending order  by priority
      @FXML
     private void sortDescending(){
       tasksTable.getSortOrder().clear();
-      tasksTable.getSortOrder().add(taskNameClm);
-      taskNameClm.setSortType(TableColumn.SortType.DESCENDING);
+      tasksTable.getSortOrder().add(taskPriorityClm);
+      taskPriorityClm.setSortType(TableColumn.SortType.DESCENDING);
       tasksTable.sort();
     }
     
