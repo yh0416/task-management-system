@@ -1,4 +1,4 @@
-173746448,Morgan,task 3,description,2024-10-19,2024-10-24,Critical,Pending
-225363478,Natasha,task 1,description of task,2024-10-12,2024-10-14,High,Pending
-023439844,Natasha,task 1,description of task,2024-10-12,2024-10-14,High,Pending
-274674737,Natasha,task 2,description of task,2024-10-12,2024-10-14,High,In Progress
+173746448,Morgan,task 3,description,2024-10-19,2024-10-24,Critical,Pending,adminEmail
+225363478,Natasha,task 1,description of task,2024-10-12,2024-10-14,High,Pending,natasha@gmail.com
+023439844,Natasha,task 1,description of task,2024-10-12,2024-10-14,High,Pending,natasha@gmail.com
+274674737,Natasha,task 2,description of task,2024-10-12,2024-10-14,High,In Progress,natasha@gmail.com

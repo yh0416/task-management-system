@@ -22,12 +22,12 @@ public class Task {
     private LocalDate startDate;
     private String priority;
     private String taskId;
-
+    private String createdBy;
     private String status;
     
       //constructor
     public Task(String taskId, String assignedTo, String taskName, String description,LocalDate startDate, LocalDate dueDate,
-            String priority, String status) {
+            String priority, String status,String createdBy) {
         this.taskId = (taskId == null)? generateTaskID() : taskId;
         this.assignedTo = assignedTo;
         this.taskName = taskName;
@@ -36,6 +36,7 @@ public class Task {
         this.dueDate = dueDate;
         this.priority = priority;
         this.status = status;
+        this.createdBy = createdBy;
 
     }
     //generate a random task id
@@ -46,8 +47,8 @@ public class Task {
 //    format task details as string
     @Override
     public String toString(){
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s",
-               taskId, assignedTo,taskName,description.replace(",", "\\,"),startDate,dueDate,priority,status);
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
+               taskId, assignedTo,taskName,description.replace(",", "\\,"),startDate,dueDate,priority,status,createdBy);
     }
 
     public String getAssignedTo() {
@@ -108,6 +109,14 @@ public class Task {
 
     public String getTaskId() {
         return taskId;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
     
     

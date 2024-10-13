@@ -1,5 +1,6 @@
 com/group1/taskmanagement/App.class
 com/group1/taskmanagement/models/User.class
+com/group1/taskmanagement/controllers/UserSession.class
 com/group1/taskmanagement/controllers/RegisterController.class
 com/group1/taskmanagement/models/TaskModel.class
 com/group1/taskmanagement/controllers/LoginController.class

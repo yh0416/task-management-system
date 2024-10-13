@@ -3,6 +3,7 @@ package com.group1.taskmanagement.controllers;
 import com.group1.taskmanagement.App;
 import com.group1.taskmanagement.models.TaskModel;
 import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -20,6 +21,9 @@ import javafx.scene.layout.VBox;
 public class TaskController {
 
     TaskModel taskModel;  
+    
+    private boolean isAdmin;
+    private String userEmail;
 
     @FXML
     private VBox taskForm;
@@ -51,8 +55,12 @@ public class TaskController {
    
     public TaskController(){
         this.taskModel = new TaskModel();
-    }
+        this.isAdmin =UserSession.getIntance().getIsAdmin();
+        this.userEmail =UserSession.getIntance().getUserEmail();
 
+    }
+    
+   
     @FXML
     public void initialize(){
         priorityDropdown.getItems().addAll("Critical","High","Medium","Low");
@@ -114,8 +122,8 @@ public class TaskController {
                 startDatePicker.getValue(),
                 dueDatePicker.getValue(),
                 priorityDropdown.getValue(),
-                statusDropdown.getValue()
-                
+                statusDropdown.getValue(),
+                userEmail       
         ); 
     }
    
@@ -150,7 +158,16 @@ public class TaskController {
     //get task data
     private void getTasks(){
         List<Task> tasksFromModel = taskModel.getTasksFromFile();
-        taskData.setAll(tasksFromModel);
+        //check if admin
+        if(isAdmin){
+           taskData.setAll(tasksFromModel);  
+        }else{
+            List<Task> userTasks = tasksFromModel.stream()
+                    .filter(task->task.getCreatedBy().equals(userEmail))
+                    .collect(Collectors.toList());
+            taskData.setAll(userTasks);
+        }
+       
        
     }
     
@@ -183,6 +200,7 @@ public class TaskController {
     taskForm.setVisible(false);
 //    show dashboard
     dashboard.setVisible(true);
+    getTasks();
 
     }
     

@@ -39,18 +39,21 @@ public class LoginController {
 
         boolean isAuthenticatd = validationManager.validateLogin(email, password);
         if (isAuthenticatd) {
-            if (validationManager.isAdmin(email)) {
+            boolean isAdmin =validationManager.isAdmin(email);
+            if (isAdmin) {
+                UserSession.getIntance().setIsAdmin(isAdmin);
+                UserSession.getIntance().setUserEmail(email);
                 try {
                     System.out.println("Admin login successfully");
                     errorMessage.setText("");
-                    App.setRoot("adminDashboard");
+                    App.setRoot("task-details");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             } else {
                 try {
                     System.out.println("regular user login successfully");
-                    App.setRoot("userDashboard");
+                    App.setRoot("task-details");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
