@@ -4,6 +4,7 @@
  */
 package com.group1.taskmanagement.controllers;
 
+import com.group1.taskmanagement.App;
 import com.group1.taskmanagement.models.User;
 import com.group1.taskmanagement.models.UserManager;
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class RegisterController {
     @FXML
     private void switchToLogin() {
         try {
-            App.setRoot("login");  // 切换到登录页面
+            App.setRoot("login");  
         } catch (IOException e) {
             e.printStackTrace();
         }

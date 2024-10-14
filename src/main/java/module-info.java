@@ -4,5 +4,7 @@ module com.group1.taskmanagement {
 
     opens com.group1.taskmanagement.controllers to javafx.fxml;
     exports com.group1.taskmanagement.controllers;
+    exports com.group1.taskmanagement;
+
     
 }
