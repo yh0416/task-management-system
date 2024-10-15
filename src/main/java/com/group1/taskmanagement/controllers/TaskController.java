@@ -80,13 +80,16 @@ public class TaskController {
     }
 
     @FXML
-    private void handleSaveTask() {
-        Task selectedTask = getSelectedTask();
-        if (selectedTask != null) {
-            updateTaskDetails(selectedTask);
-            taskModel.updateTask(selectedTask); // Ensure this method updates the task in storage
-            tasksTable.refresh(); // Refresh the table view
-            navigateToDashboard(); // Switch back to the task list view
+    private void handleSubmitTask() {
+        Task newTask = gatherTaskDetails();
+        boolean response = taskModel.submitTask(newTask);
+        if (response) {
+            System.out.println("Task Submitted Successfully");
+            taskData.add(newTask); // Add task to observable list
+            clearForm();           // Clear form fields
+            showDashboard();       // Navigate back to dashboard
+        } else {
+            System.out.println("There was an error submitting the task");
         }
     }
 
@@ -118,6 +121,7 @@ public class TaskController {
         return (Task) tasksTable.getSelectionModel().getSelectedItem();
     }
 
+
     @FXML
     public void initialize() {
         priorityDropdown.getItems().addAll("Critical", "High", "Medium", "Low");
@@ -131,6 +135,8 @@ public class TaskController {
         taskDueClm.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         taskPriorityClm.setCellValueFactory(new PropertyValueFactory<>("priority"));
         taskStatusClm.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+
         taskStatusClm.setCellFactory(column -> new TableCell<Task, String>() {
             private Label label = new Label();
             private Circle circle = new Circle(10);

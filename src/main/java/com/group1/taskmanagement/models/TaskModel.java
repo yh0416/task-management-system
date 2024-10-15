@@ -58,6 +58,7 @@ public class TaskModel {
 
     public List<Task> getTasksFromFile() {
         List<Task> tasks = new ArrayList<>();
+        System.out.println("Loading tasks from file...");
         try (BufferedReader br = new BufferedReader(new FileReader(file_path))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -68,12 +69,16 @@ public class TaskModel {
                             LocalDate.parse(parts[5]), parts[6], parts[7], parts[8]);
 
                     tasks.add(task);
+                    // 打印日志，帮助调试每个任务的加载
+                    System.out.println("Loaded task: " + task.getTaskName());
+                } else {
+                    System.out.println("Invalid task data, skipping line: " + line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-
         }
+        System.out.println("Total tasks loaded: " + tasks.size());
         return tasks;
 
     }
@@ -107,6 +112,21 @@ public class TaskModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addSampleTasks() {
+        // 创建几个预设的测试任务
+        Task task1 = new Task(null, "John", "Task 1", "This is task 1", LocalDate.now(), LocalDate.now().plusDays(1), "High", "Pending", "Admin");
+        Task task2 = new Task(null, "Jane", "Task 2", "This is task 2", LocalDate.now(), LocalDate.now().plusDays(2), "Medium", "In Progress", "Admin");
+        Task task3 = new Task(null, "Doe", "Task 3", "This is task 3", LocalDate.now(), LocalDate.now().plusDays(3), "Low", "Completed", "Admin");
+
+        // 添加这些任务到任务列表中
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+
+        // 将这些任务写入到文件中
+        writeTasksToFile();
     }
 
 }

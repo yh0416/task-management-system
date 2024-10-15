@@ -135,7 +135,7 @@
                                         <Insets right="50.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="saveTaskBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSaveTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20;" text="Save">
+                                <Button fx:id="saveTaskBtn" mnemonicParsing="false" onAction="#handleSubmitTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20;" text="Submit">
                                     <HBox.margin>
                                         <Insets left="50.0" />
                                     </HBox.margin>
