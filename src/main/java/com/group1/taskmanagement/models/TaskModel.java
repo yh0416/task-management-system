@@ -20,20 +20,19 @@ import java.util.List;
  */
 public class TaskModel {
 
-    private List<Task> tasks;
     private String file_path = "tasks.txt";
 
     //constructor
     public TaskModel() {
-        this.tasks = new ArrayList<>();
+        
         getTasksFromFile();
 
     }
 
-    private void writeTasksToFile() {
+    private void writeTasksToFile(List<Task> allTasks) {
         //to avoid overwriting add true to filewriter to append
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file_path, true))) {
-            for (Task task : tasks) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file_path, false))) {
+            for (Task task : allTasks) {
 //                write task into the file
                 bw.write(task.toString());
 //               go to the next line after adding task
@@ -46,10 +45,11 @@ public class TaskModel {
     }
 
     public boolean submitTask(Task taskDetails) {
+        List allTasks = getTasksFromFile();
 //        save task details in an array lisr
-        boolean success = tasks.add(taskDetails);
+        boolean success = allTasks.add(taskDetails);
         if (success) {
-            writeTasksToFile();
+            writeTasksToFile(allTasks);
             return true;
         }
         return false;
@@ -78,22 +78,20 @@ public class TaskModel {
 
     }
 
-    public void updateTask(Task updatedTask) {
+    public boolean updateTask(Task updatedTask) {
         List<Task> tasks = getTasksFromFile();
+        boolean updated = false;
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getTaskId().equals(updatedTask.getTaskId())) {
                 tasks.set(i, updatedTask);
+                updated = true;
                 break;
             }
         }
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file_path))) {
-            for (Task task : tasks) {
-                bw.write(task.toString());
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+       if(updated){
+           writeTasksToFile(tasks);
+       }
+       return updated;
     }
 
     public void deleteTask(String taskId) {

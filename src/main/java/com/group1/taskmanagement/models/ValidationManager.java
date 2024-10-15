@@ -4,8 +4,14 @@
  */
 package com.group1.taskmanagement.models;
 
+
+import com.group1.taskmanagement.controllers.Task;
+import com.group1.taskmanagement.controllers.TaskController;
 import com.group1.taskmanagement.models.User;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 
 /**
  *
@@ -14,6 +20,7 @@ import java.util.ArrayList;
 public class ValidationManager {
 
     private UserManager userManager;
+    private TaskController task;
 
     public ValidationManager() {
         this.userManager = new UserManager();
@@ -32,5 +39,56 @@ public class ValidationManager {
 
     public boolean isAdmin(String email) {
         return userManager.isAdmin(email);
+    }
+    
+    public boolean validateInputs(Task task){
+        if (task.getTaskName().trim().isEmpty()) {
+            showAlert("Task Name is required");
+            return false;
+        }
+        if (task.getAssignedTo().trim().isEmpty()) {
+            showAlert("Assigned To is required");
+            return false;
+        }
+        if (task.getDescription().trim().isEmpty()) {
+            showAlert("Description is required");
+            return false;
+        }
+        if (task.getStartDate() == null) {
+            showAlert("Start Date is required");
+            return false;
+        }
+        if (task.getDueDate() == null) {
+            showAlert("Due Date is required");
+            return false;
+        }
+        if (task.getPriority() == null) {
+            showAlert("Priority is required");
+            return false;
+        }
+        if (task.getStatus() == null) {
+            showAlert("Status is required");
+            return false;
+        }
+        if (task.getStartDate().isAfter(task.getDueDate())) {
+            showAlert("Start Date cannot be after Due Date");
+            return false;
+        }
+        return true;
+}
+    
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        if (email == null) return false;
+        return pattern.matcher(email).matches();
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -1,6 +1,7 @@
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/TaskModel.java
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/LoginController.java
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/User.java
+/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/App.java
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/module-info.java
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/RegisterController.java
 /home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/ValidationManager.java

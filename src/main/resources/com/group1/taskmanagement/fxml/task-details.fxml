@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group1.taskmanagement.controllers.TaskController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1045.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group1.taskmanagement.controllers.TaskController">
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #d0d0d0; -fx-border-width: 0 1 1 0;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #ADD8E6; -fx-border-color: #d0d0d0; -fx-border-width: 0 1 1 0;" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Efficio">
                     <font>
@@ -27,7 +27,7 @@
                         <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
                     </VBox.margin>
                 </Label>
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showTaskForm" style="-fx-background-color: #f0f0f0;" text="New Task">
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showTaskForm" style="-fx-background-color: #ADD8E6;" text="New Task">
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
@@ -48,7 +48,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <Button layoutX="37.0" layoutY="316.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" text="Sign Out" />
+                        <Button layoutX="37.0" layoutY="316.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #E6BBAD;" text="Sign Out" />
                     </children>
                     <padding>
                         <Insets bottom="30.0" />
@@ -123,19 +123,14 @@
                                 <Insets bottom="5.0" left="10.0" top="10.0" />
                             </padding>
                         </ComboBox>
-                        <Button fx:id="addSubtaskBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="132.0" style="-fx-background-radius: 20;" text="Add Subtask">
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </Button>
                         <HBox fillHeight="false" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <Button fx:id="deleteTaskBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="166.0" style="-fx-background-radius: 20;" text="Delete Task" onAction="#handleDeleteTask">
+                                <Button fx:id="deleteTaskBtn" mnemonicParsing="false" onAction="#handleDeleteTask" prefHeight="42.0" prefWidth="166.0" style="-fx-background-radius: 20; -fx-background-color: #E6BBAD;" text="Delete Task">
                                     <HBox.margin>
                                         <Insets right="50.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="saveTaskBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSaveTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20;" text="Save">
+                                <Button fx:id="saveTaskBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSaveTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20; -fx-background-color: #ADD8E6;" text="Submit Task">
                                     <HBox.margin>
                                         <Insets left="50.0" />
                                     </HBox.margin>
@@ -155,7 +150,7 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button mnemonicParsing="false" style="-fx-background-radius: 10;" text="Sort Ascending" onAction="#sortAscending">
+                                <Button mnemonicParsing="false" onAction="#sortAscending" style="-fx-background-radius: 10;" text="Sort Ascending">
                                     <padding>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </padding>
@@ -163,7 +158,7 @@
                                         <Insets right="10.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" style="-fx-background-radius: 10;" text="Sort Descending" onAction="#sortDescending">
+                                <Button mnemonicParsing="false" onAction="#sortDescending" style="-fx-background-radius: 10;" text="Sort Descending">
                                     <HBox.margin>
                                         <Insets right="10.0" />
                                     </HBox.margin>

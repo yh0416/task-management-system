@@ -28,7 +28,7 @@ public class Task {
       //constructor
     public Task(String taskId, String assignedTo, String taskName, String description,LocalDate startDate, LocalDate dueDate,
             String priority, String status,String createdBy) {
-        this.taskId = (taskId == null)? generateTaskID() : taskId;
+        this.taskId = taskId;
         this.assignedTo = assignedTo;
         this.taskName = taskName;
         this.description = description;
@@ -40,7 +40,7 @@ public class Task {
 
     }
     //generate a random task id
-    private String generateTaskID(){
+    public String generateTaskId(){
         return UUID.randomUUID().toString();
     }
     
@@ -117,6 +117,10 @@ public class Task {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
     
     

@@ -2,6 +2,7 @@ package com.group1.taskmanagement.controllers;
 
 import com.group1.taskmanagement.App;
 import com.group1.taskmanagement.models.TaskModel;
+import com.group1.taskmanagement.models.ValidationManager;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ import javafx.scene.shape.Circle;
 public class TaskController {
 
     TaskModel taskModel;
+    private ValidationManager vm = new ValidationManager();
 
     private boolean isAdmin;
     private String userEmail;
@@ -77,41 +79,6 @@ public class TaskController {
         this.isAdmin = UserSession.getIntance().getIsAdmin();
         this.userEmail = UserSession.getIntance().getUserEmail();
 
-    }
-
-    @FXML
-    private void handleSaveTask() {
-        Task selectedTask = getSelectedTask();
-        if (selectedTask != null) {
-            updateTaskDetails(selectedTask);
-            taskModel.updateTask(selectedTask); // Ensure this method updates the task in storage
-            tasksTable.refresh(); // Refresh the table view
-            navigateToDashboard(); // Switch back to the task list view
-        }
-    }
-
-    @FXML
-    private void handleDeleteTask() {
-        Task selectedTask = getSelectedTask();
-        if (selectedTask != null) {
-            taskModel.deleteTask(selectedTask.getTaskId());
-            taskData.remove(selectedTask); // Update UI
-            navigateToDashboard(); // Switch back to the task list view
-        }
-    }
-
-    private void updateTaskDetails(Task task) {
-        task.setAssignedTo(assignedToTxt.getText());
-        task.setTaskName(taskNameTxt.getText());
-        task.setDescription(descriptionTextArea.getText());
-        task.setPriority(priorityDropdown.getValue());
-        task.setDueDate(dueDatePicker.getValue());
-        task.setStartDate(startDatePicker.getValue());
-        task.setStatus(statusDropdown.getValue());
-    }
-
-    private void navigateToDashboard() {
-        // Implement navigation logic to switch back to the dashboard view
     }
 
     private Task getSelectedTask() {
@@ -216,7 +183,11 @@ public class TaskController {
 
 //   gather task details
     private Task gatherTaskDetails() {
-        return new Task(null,
+        Task selectedTask = getSelectedTask();
+        String taskId =  (selectedTask != null)?
+            taskId = selectedTask.getTaskId(): null;
+        
+        return new Task(taskId,
                 assignedToTxt.getText(),
                 taskNameTxt.getText(),
                 descriptionTextArea.getText(),
@@ -230,20 +201,52 @@ public class TaskController {
 
     //submit task data
     @FXML
-    private void submitTask() {
-        Task newTask = gatherTaskDetails();
-        //     save the data
-        boolean response = taskModel.submitTask(newTask);
-        if (response) {
-            System.out.println("Task Saved Successfully");
-//                add task to oberservable list
-            taskData.add(newTask);
-            clearForm();
-            showDashboard();
-        } else {
-            System.out.println("There was an error saving task");
-        }
+    private void handleSaveTask() {
+        Task task = gatherTaskDetails();
+        if(vm.validateInputs(task)){
+             boolean isNewTask = task.getTaskId()==null;
+            System.out.println(isNewTask);
+            boolean response;
+            if(isNewTask){
+    //         generate task Id
+            task.setTaskId(task.generateTaskId());
+             //save the data
+            response = taskModel.submitTask(task);
+            }else{
+              response = taskModel.updateTask(task); 
+            }
+            System.out.println(response);
+            if (response) {
+                System.out.println(isNewTask ? "Task Saved Successfully" : "Task Updated Successfully");
+                if(isNewTask){
+                    //add task to oberservable list
+                taskData.add(task);
 
+                }else{
+                   int index = getTaskIndex(task.getTaskId());
+                   if(index != -1){
+                       taskData.set(index,task);
+                   }
+
+                }
+                 clearForm();
+                showDashboard();
+
+            } else {
+                System.out.println("There was an error saving task");
+            }
+            
+        }
+       
+
+    }
+    private int getTaskIndex(String taskId){
+        for(int i=0;i< taskData.size();i++){
+                   if(taskData.get(i).getTaskId().equals(taskId)){
+                       return i;
+                   }
+               }
+              return -1;
     }
 
     //clear form after submitting
@@ -326,6 +329,19 @@ public class TaskController {
         //show task form
         showTaskForm();
     }
+
+
+    @FXML
+    private void handleDeleteTask() {
+        Task selectedTask = getSelectedTask();
+        if (selectedTask != null) {
+            taskModel.deleteTask(selectedTask.getTaskId());
+            taskData.remove(selectedTask); // Update UI
+            showDashboard();
+        }
+    }
+
+
 
     // edit task
     public void editTask(Task task) {
