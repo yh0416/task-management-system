@@ -12,69 +12,6 @@ import javafx.scene.control.TextField;
 
 public class LoginController {
 
-//    @FXML
-//    private TextField emailField;
-//
-//    @FXML
-//    private Button loginButton;
-//    
-//    @FXML
-//    private Button signUpButton;
-//
-//    @FXML
-//    private PasswordField passwordField;
-//
-//    @FXML
-//    private Label errorMessage;
-//
-//    private ValidationManager validationManager;
-//
-//    public LoginController() {
-//        this.validationManager = new ValidationManager();
-//    }
-//
-//    @FXML
-//    public void loginAction() {
-//        String email = emailField.getText();
-//        String password = passwordField.getText();
-//
-//        boolean isAuthenticatd = validationManager.validateLogin(email, password);
-//        if (isAuthenticatd) {
-//            boolean isAdmin =validationManager.isAdmin(email);
-//            if (isAdmin) {
-//                UserSession.getIntance().setIsAdmin(isAdmin);
-//                UserSession.getIntance().setUserEmail(email);
-//                try {
-//                    System.out.println("Admin login successfully");
-//                    errorMessage.setText("");
-//                    App.setRoot("task-details");
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//            } else {
-//                try {
-//                    System.out.println("regular user login successfully");
-//                    App.setRoot("task-details");
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//            }
-//        } else {
-//            System.out.println("Login failed! register please");
-//        }
-//    }
-//
-//    @FXML
-//    private void switchToSignUp() {
-//        try {
-//            App.setRoot("register");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
-
-
     @FXML
     private TextField emailField;
 
@@ -90,7 +27,7 @@ public class LoginController {
     @FXML
     private Label errorMessage;
 
-  private UserManager userManager = UserManager.getInstance();// Assuming this is instantiated properly
+    private UserManager userManager = UserManager.getInstance();// Assuming this is instantiated properly
 
     @FXML
     public void loginAction() throws IOException {
@@ -99,13 +36,30 @@ public class LoginController {
 
         boolean isAuthenticated = userManager.validateLogin(email, password);
         if (isAuthenticated) {
-            if (userManager.isAdmin(email)) {
-                System.out.println("Admin login successfully");
-                errorMessage.setText("");
-                // Redirect to task-details for admin
-                App.setRoot("task-details");
+            boolean isAdmin = userManager.isAdmin(email);
+            UserSession.getIntance().setIsAdmin(isAdmin);
+            UserSession.getIntance().setUserEmail(email);
+
+            if (isAdmin) {
+//                UserSession.getIntance().setIsAdmin(isAdmin);
+//                UserSession.getIntance().setUserEmail(email);
+                try {
+                    System.out.println("Admin login successfully");
+                    errorMessage.setText("");
+                    App.setRoot("task-details");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             } else {
-                System.out.println("User login successfully");
+                try {
+                    UserSession.getIntance().setUserEmail(email);
+                    System.out.println("regular user login successfully");
+                    App.setRoot("task-details");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                System.out.println("Regular user login successfully");
                 errorMessage.setText("");
                 // Redirect to task-details for regular user
                 App.setRoot("task-details");
@@ -124,6 +78,4 @@ public class LoginController {
             ex.printStackTrace();
         }
     }
-    }
-
-
+}

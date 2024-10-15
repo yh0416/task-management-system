@@ -24,13 +24,20 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        try {
+            App.setRoot("task-details");
+            System.out.println("Successfully navigated to task-details page");
+        } catch (IOException e) {
+            System.out.println("Failed to navigate to task-details page");
+            e.printStackTrace();
+        }
+
     }
 
-   private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/group1/taskmanagement/fxml/" + fxml + ".fxml"));
-    return fxmlLoader.load();
-}
-
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/group1/taskmanagement/fxml/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
     public static void main(String[] args) {
         launch();

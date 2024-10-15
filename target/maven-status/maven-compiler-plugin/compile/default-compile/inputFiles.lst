@@ -1,12 +1,12 @@
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/TaskModel.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/LoginController.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/User.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/App.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/module-info.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/RegisterController.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/ValidationManager.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/UserSession.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/App.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/models/UserManager.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/TaskController.java
-/home/kiara/information systems/application engineering/TaskManagementApp/src/main/java/com/group1/taskmanagement/controllers/Task.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\TaskController.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\App.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\models\TaskModel.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\App.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\Task.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\LoginController.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\UserSession.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\models\UserManager.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\models\ValidationManager.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\controllers\RegisterController.java
+D:\projects\task-management-system\src\main\java\com\group1\taskmanagement\models\User.java
+D:\projects\task-management-system\src\main\java\module-info.java

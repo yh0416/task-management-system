@@ -2,7 +2,9 @@ package com.group1.taskmanagement.controllers;
 
 import com.group1.taskmanagement.App;
 import com.group1.taskmanagement.models.TaskModel;
+import com.group1.taskmanagement.models.UserManager;
 import com.group1.taskmanagement.models.ValidationManager;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
@@ -10,6 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.DatePicker;
@@ -23,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class TaskController {
 
@@ -68,6 +75,9 @@ public class TaskController {
 
     @FXML
     private ComboBox<String> statusFilter;
+    @FXML
+    private Button signOutButton;
+
 //   use and observable list to automatically update UI when changes occur
     private ObservableList<Task> taskData = FXCollections.observableArrayList();
 //    initialize filter data
@@ -85,7 +95,6 @@ public class TaskController {
         return (Task) tasksTable.getSelectionModel().getSelectedItem();
     }
 
-
     @FXML
     public void initialize() {
         priorityDropdown.getItems().addAll("Critical", "High", "Medium", "Low");
@@ -99,7 +108,6 @@ public class TaskController {
         taskDueClm.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         taskPriorityClm.setCellValueFactory(new PropertyValueFactory<>("priority"));
         taskStatusClm.setCellValueFactory(new PropertyValueFactory<>("status"));
-
 
         taskStatusClm.setCellFactory(column -> new TableCell<Task, String>() {
             private Label label = new Label();
@@ -187,9 +195,9 @@ public class TaskController {
 //   gather task details
     private Task gatherTaskDetails() {
         Task selectedTask = getSelectedTask();
-        String taskId =  (selectedTask != null)?
-            taskId = selectedTask.getTaskId(): null;
-        
+        String taskId = (selectedTask != null)
+                ? taskId = selectedTask.getTaskId() : null;
+
         return new Task(taskId,
                 assignedToTxt.getText(),
                 taskNameTxt.getText(),
@@ -206,50 +214,50 @@ public class TaskController {
     @FXML
     private void handleSaveTask() {
         Task task = gatherTaskDetails();
-        if(vm.validateInputs(task)){
-             boolean isNewTask = task.getTaskId()==null;
+        if (vm.validateInputs(task)) {
+            boolean isNewTask = task.getTaskId() == null;
             System.out.println(isNewTask);
             boolean response;
-            if(isNewTask){
-    //         generate task Id
-            task.setTaskId(task.generateTaskId());
-             //save the data
-            response = taskModel.submitTask(task);
-            }else{
-              response = taskModel.updateTask(task); 
+            if (isNewTask) {
+                //         generate task Id
+                task.setTaskId(task.generateTaskId());
+                //save the data
+                response = taskModel.submitTask(task);
+            } else {
+                response = taskModel.updateTask(task);
             }
             System.out.println(response);
             if (response) {
                 System.out.println(isNewTask ? "Task Saved Successfully" : "Task Updated Successfully");
-                if(isNewTask){
+                if (isNewTask) {
                     //add task to oberservable list
-                taskData.add(task);
+                    taskData.add(task);
 
-                }else{
-                   int index = getTaskIndex(task.getTaskId());
-                   if(index != -1){
-                       taskData.set(index,task);
-                   }
+                } else {
+                    int index = getTaskIndex(task.getTaskId());
+                    if (index != -1) {
+                        taskData.set(index, task);
+                    }
 
                 }
-                 clearForm();
+                clearForm();
                 showDashboard();
 
             } else {
                 System.out.println("There was an error saving task");
             }
-            
+
         }
-       
 
     }
-    private int getTaskIndex(String taskId){
-        for(int i=0;i< taskData.size();i++){
-                   if(taskData.get(i).getTaskId().equals(taskId)){
-                       return i;
-                   }
-               }
-              return -1;
+
+    private int getTaskIndex(String taskId) {
+        for (int i = 0; i < taskData.size(); i++) {
+            if (taskData.get(i).getTaskId().equals(taskId)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     //clear form after submitting
@@ -276,6 +284,7 @@ public class TaskController {
                     .collect(Collectors.toList());
             taskData.setAll(userTasks);
         }
+        System.out.println(isAdmin);
 
     }
 
@@ -333,7 +342,6 @@ public class TaskController {
         showTaskForm();
     }
 
-
     @FXML
     private void handleDeleteTask() {
         Task selectedTask = getSelectedTask();
@@ -343,8 +351,6 @@ public class TaskController {
             showDashboard();
         }
     }
-
-
 
     // edit task
     public void editTask(Task task) {
@@ -366,6 +372,23 @@ public class TaskController {
         if (task != null) {
             taskModel.deleteTask(task.getTaskId());
             taskData.remove(task); // Update UI
+        }
+    }
+
+    @FXML
+    public void handleSignOut() {
+        try {
+            UserManager.clearCurrentUser();
+
+            Stage stage = (Stage) signOutButton.getScene().getWindow();
+
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group1/taskmanagement/fxml/login.fxml"));
+
+            stage.setScene(new Scene(root));
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

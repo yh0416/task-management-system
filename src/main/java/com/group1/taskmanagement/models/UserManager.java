@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class UserManager {
 
+    private static User currentUser = null;
+
     private ArrayList<User> users;
     private static UserManager instance;
 
@@ -17,6 +19,20 @@ public class UserManager {
         // Put admin into it
         User adminUser = new User("Admin", aminEmail, aminPassword);
         users.add(adminUser);
+    }
+
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    // 获取当前用户
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    // 清除当前用户
+    public static void clearCurrentUser() {
+        currentUser = null;
     }
 
     // Add a new user
