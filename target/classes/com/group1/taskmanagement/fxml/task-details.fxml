@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group1.taskmanagement.controllers.TaskController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="1045.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group1.taskmanagement.controllers.TaskController">
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #ADD8E6; -fx-border-color: #d0d0d0; -fx-border-width: 0 1 1 0;" BorderPane.alignment="CENTER">
             <children>
@@ -130,7 +130,11 @@
                                         <Insets right="50.0" />
                                     </HBox.margin>
                                 </Button>
+<<<<<<< HEAD
                                 <Button fx:id="saveTaskBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSaveTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20; -fx-background-color: #ADD8E6;" text="Submit Task">
+=======
+                                <Button fx:id="saveTaskBtn" mnemonicParsing="false" onAction="#handleSubmitTask" prefHeight="42.0" prefWidth="192.0" style="-fx-background-radius: 20;" text="Submit">
+>>>>>>> 1842496 (repair the login bug, and change the save button into submit, but every time submit, the new task can't be present into the task lists, I want to add some tasks to test the edit and delete,but also not working. I think this error kind out of my ability...)
                                     <HBox.margin>
                                         <Insets left="50.0" />
                                     </HBox.margin>

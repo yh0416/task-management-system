@@ -35,12 +35,11 @@ public class RegisterController {
     private Button loginButton;
     @FXML
     private Label errorMessage;
+    
+  
 
-    private UserManager userManager;
+   private UserManager userManager = UserManager.getInstance();
 
-    public RegisterController() {
-        this.userManager = new UserManager();
-    }
 
     //bind the button to the event handler
     public void initialize() {
@@ -57,6 +56,7 @@ public class RegisterController {
     }
 
 //validate the form
+    @FXML
     private void handleSignUp() {
         String fullName = fullNameField.getText();
         String email = emailField.getText();
@@ -76,7 +76,7 @@ public class RegisterController {
     @FXML
     private void switchToLogin() {
         try {
-            App.setRoot("login");  
+            App.setRoot("login");
         } catch (IOException e) {
             e.printStackTrace();
         }

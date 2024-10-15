@@ -58,6 +58,7 @@ public class TaskModel {
 
     public List<Task> getTasksFromFile() {
         List<Task> tasks = new ArrayList<>();
+        System.out.println("Loading tasks from file...");
         try (BufferedReader br = new BufferedReader(new FileReader(file_path))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -68,12 +69,16 @@ public class TaskModel {
                             LocalDate.parse(parts[5]), parts[6], parts[7], parts[8]);
 
                     tasks.add(task);
+                    // 打印日志，帮助调试每个任务的加载
+                    System.out.println("Loaded task: " + task.getTaskName());
+                } else {
+                    System.out.println("Invalid task data, skipping line: " + line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-
         }
+        System.out.println("Total tasks loaded: " + tasks.size());
         return tasks;
 
     }
@@ -106,5 +111,7 @@ public class TaskModel {
             e.printStackTrace();
         }
     }
+
+ 
 
 }

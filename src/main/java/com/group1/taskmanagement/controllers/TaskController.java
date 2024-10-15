@@ -85,6 +85,7 @@ public class TaskController {
         return (Task) tasksTable.getSelectionModel().getSelectedItem();
     }
 
+
     @FXML
     public void initialize() {
         priorityDropdown.getItems().addAll("Critical", "High", "Medium", "Low");
@@ -98,6 +99,8 @@ public class TaskController {
         taskDueClm.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         taskPriorityClm.setCellValueFactory(new PropertyValueFactory<>("priority"));
         taskStatusClm.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+
         taskStatusClm.setCellFactory(column -> new TableCell<Task, String>() {
             private Label label = new Label();
             private Circle circle = new Circle(10);
