@@ -99,16 +99,25 @@ public class LoginController {
 
         boolean isAuthenticated = userManager.validateLogin(email, password);
         if (isAuthenticated) {
-            if (userManager.isAdmin(email)) {
-                System.out.println("Admin login successfully");
-                errorMessage.setText("");
-                // Redirect to task-details for admin
-                App.setRoot("task-details");
+            boolean isAdmin =userManager.isAdmin(email);
+            if (isAdmin) {
+                UserSession.getIntance().setIsAdmin(isAdmin);
+                UserSession.getIntance().setUserEmail(email);
+                try {
+                    System.out.println("Admin login successfully");
+                    errorMessage.setText("");
+                    App.setRoot("task-details");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             } else {
-                System.out.println("User login successfully");
-                errorMessage.setText("");
-                // Redirect to task-details for regular user
-                App.setRoot("task-details");
+                try {
+                    UserSession.getIntance().setUserEmail(email);
+                    System.out.println("regular user login successfully");
+                    App.setRoot("task-details");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         } else {
             errorMessage.setText("Login failed! Please register.");

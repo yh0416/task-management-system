@@ -276,6 +276,7 @@ public class TaskController {
                     .collect(Collectors.toList());
             taskData.setAll(userTasks);
         }
+        System.out.println(isAdmin);
 
     }
 
