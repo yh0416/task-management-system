@@ -3,6 +3,7 @@ package com.group1.taskmanagement.controllers;
 import com.group1.taskmanagement.App;
 import com.group1.taskmanagement.models.TaskModel;
 import com.group1.taskmanagement.models.ValidationManager;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
@@ -367,6 +368,14 @@ public class TaskController {
         if (task != null) {
             taskModel.deleteTask(task.getTaskId());
             taskData.remove(task); // Update UI
+        }
+    }
+    
+    public void signOut(){
+              try {
+            App.setRoot("login");
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 

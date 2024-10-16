@@ -1,9 +1,9 @@
 2c8037ff-b05f-484c-b816-49227e32823f,natasha,task 1,description,2024-10-10,2024-10-16,High,In Progress,adminEmail
-f3465613-7958-4cd5-a617-8f95468a04d1,123,2,222,2024-10-03,2024-10-08,High,In Progress,null
-25364e90-b76e-47b9-b2c0-4578a49b6630,123,111,111,2024-10-10,2024-10-10,High,In Progress,null
-495bf103-3bc0-4fb7-b5a1-98aa362cd2c0,123,111,111,2024-10-03,2024-10-09,High,In Progress,null
-e8901014-4d8b-4547-bf86-43b8d3d4cd9e,123,wera,eee,2024-10-11,2024-10-24,Medium,In Progress,null
-de808feb-89bb-4eff-85e4-a9ea934e0eee,123,11,11,2024-10-24,2024-10-16,High,In Progress,null
-0f22397b-31ab-4b66-b0bf-5e1488adbdf0,123,11,111,2024-10-04,2024-10-11,High,In Progress,null
-6d560528-e91f-41fe-9fac-f44be97f9ead,morgan,task 6,jbcdbc,2024-10-15,2024-10-17,Critical,Pending,null
+f3465613-7958-4cd5-a617-8f95468a04d1,123,2,222,2024-10-03,2024-10-08,High,In Progress,adminEmail
+25364e90-b76e-47b9-b2c0-4578a49b6630,123,111,111,2024-10-10,2024-10-10,High,In Progress,adminEmail
+495bf103-3bc0-4fb7-b5a1-98aa362cd2c0,123,111,111,2024-10-03,2024-10-09,High,In Progress,adminEmail
+e8901014-4d8b-4547-bf86-43b8d3d4cd9e,123,wera,eee,2024-10-11,2024-10-24,Medium,In Progress,adminEmail
+de808feb-89bb-4eff-85e4-a9ea934e0eee,123,11,11,2024-10-24,2024-10-16,High,In Progress,natasha@gmail.com
+0f22397b-31ab-4b66-b0bf-5e1488adbdf0,123,11,111,2024-10-04,2024-10-11,High,In Progress,natasha@gmail.com
+6d560528-e91f-41fe-9fac-f44be97f9ead,morgan,task 6,jbcdbc,2024-10-15,2024-10-17,Critical,Pending,natasha@gmail.com
 afcba89b-d7fb-45e9-a131-93b9642d32b0,morgan,gygg,ggjhg	jhgjh	,2024-10-15,2024-10-17,Critical,Pending,natasha@gmail.com

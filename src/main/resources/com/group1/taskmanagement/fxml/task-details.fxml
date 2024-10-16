@@ -48,7 +48,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <Button layoutX="37.0" layoutY="316.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #E6BBAD;" text="Sign Out" />
+                        <Button layoutX="37.0" layoutY="316.0" mnemonicParsing="false" onAction="#signOut" prefHeight="42.0" prefWidth="96.0" style="-fx-background-color: #E6BBAD;" text="Sign Out" />
                     </children>
                     <padding>
                         <Insets bottom="30.0" />

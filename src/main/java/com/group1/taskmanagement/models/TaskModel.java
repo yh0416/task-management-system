@@ -70,7 +70,7 @@ public class TaskModel {
 
                     tasks.add(task);
                     // 打印日志，帮助调试每个任务的加载
-                    System.out.println("Loaded task: " + task.getTaskName());
+//                    System.out.println("Loaded task: " + task.getTaskName());
                 } else {
                     System.out.println("Invalid task data, skipping line: " + line);
                 }
@@ -78,7 +78,7 @@ public class TaskModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Total tasks loaded: " + tasks.size());
+//        System.out.println("Total tasks loaded: " + tasks.size());
         return tasks;
 
     }
